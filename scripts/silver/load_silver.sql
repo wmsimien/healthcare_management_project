@@ -31,10 +31,10 @@ SELECT patient_nbr
 		ELSE TRIM(race)
 	END AS race
     , TRIM(gender)
-    , REPLACE(SUBSTRING(age, 1, length(age)), '[', '(') AS age
+    , REPLACE(REPLACE(age, '[', ''), ')', '') AS age
     , CASE
         WHEN weight = '?' THEN REPLACE(weight, '?', 'Not Captured') 
-		ELSE REPLACE(SUBSTRING(weight, 1, length(weight)), '[', '(')
+		ELSE REPLACE(REPLACE(weight, '[', ''), ')', '')
 	END AS weight
 FROM bronze_patient;
 
@@ -71,15 +71,15 @@ SELECT encounter_id,patient_nbr,admission_type_id,discharge_disposition_id,admis
         ELSE TRIM(medical_specialty)
     END AS medical_specialty,num_lab_procedures,num_procedures,num_medications,number_outpatient,number_emergency,number_inpatient
     , CASE 
-		WHEN diag_1 = '?' THEN REPLACE(diag_1, '?', '799.9') 
+		WHEN diag_1 = '?' THEN REPLACE(diag_1, '?', 799) 
         ELSE TRIM(diag_1)
     END AS diag_1
     , CASE 
-		WHEN diag_2 = '?' THEN REPLACE(diag_2, '?', '799.9') 
+		WHEN diag_2 = '?' THEN REPLACE(diag_2, '?', 799) 
         ELSE TRIM(diag_2)
     END AS diag_2
     , CASE 
-		WHEN diag_3 = '?' THEN REPLACE(diag_3, '?', '799.9') 
+		WHEN diag_3 = '?' THEN REPLACE(diag_3, '?', 799) 
         ELSE TRIM(diag_3)
     END AS diag_3,number_diagnoses
     , IFNULL(max_glu_serum, 'None') AS max_glu_serum
