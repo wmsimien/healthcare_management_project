@@ -20,7 +20,8 @@ _To empower healthcare providers to proactively intervene and prevent readmissio
 ## 🛠 Tools & Technologies
 
 
-## 🔄 Data Workflow
+## 🔄 Data Workflow [View Docs](docs/)
+To view the Pewliminary Analysis And Methodology Doc, click on link: (docs/Capstone%20Preliminary%20Analysis%20and%20Methodology_HealthcareManagement_github.docx)
 
 ## 📧 Contact
 
