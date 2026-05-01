@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS admission_type (
 CREATE TABLE IF NOT EXISTS discharge_disposition (
 	discharge_disposition_id INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Unique identifier for each discharge disposition',
   discharge_disposition_description VARCHAR(255) COMMENT 'Description of discharge disposition'
-) COMMENT = 'Table storing inital data of discharge disposition';
+) COMMENT = 'Table storing initial data of discharge disposition';
 
 # create table admission_source:
 CREATE TABLE IF NOT EXISTS admission_source (
@@ -24,13 +24,15 @@ CREATE TABLE IF NOT EXISTS admission_source (
   admission_source_description VARCHAR(255) COMMENT 'Description of admission source'
 ) COMMENT = 'Table storing inital data of admission_source';
 
-# create ICD9_codes lookup table
-CREATE TABLE IF NOT EXISTS ICD9_codes (
+# create ICD9 table
+CREATE TABLE IF NOT EXISTS ICD9 (
 	id INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Unique identifier for each record',
-  code_start VARCHAR(4) COMMENT 'Start range for ICD9 code',
-	code_end VARCHAR(4) COMMENT 'End range for ICD9 code',
+	code_start_str VARCHAR(4) COMMENT 'Start range for ICD9 code',
+	code_end_str VARCHAR(4) COMMENT 'End range for ICD9 code',
+    code_start_int INT COMMENT 'Integer Start range for ICD9 code',
+	code_end_int INT COMMENT 'Integer End range for ICD9 code',
 	icd9_description VARCHAR(255) COMMENT 'Description of ICD9 code range'
-) COMMENT = 'Table storing inital data of ICD9 code';
+) COMMENT = 'Table storing initial data of ICD9 code';
 
 # create table patient:
 CREATE TABLE IF NOT EXISTS patient (
