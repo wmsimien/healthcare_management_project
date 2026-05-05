@@ -42,9 +42,15 @@ VALUES ('E000', 'E999','SUPPLEMENTARYCLASSIFICATION OF EXTERNAL CAUSES OF INJURY
 ('V01','V91','SUPPLEMENTARY CLASSIFICATION OF FACTORS INFLUENCING HEALTH STATUS AND CONTACT WITH HEALTH SERVICES (V01-V91)');
 
 # Insert into patient from silver_patient
-INSERT INTO healthcare.patient (patient_nbr, race, gender, age, weight)
+INSERT INTO patient (patient_nbr, race, gender, age, weight)
+WITH patient_ranking AS (
+	SELECT *
+		, ROW_NUMBER() OVER(PARTITION BY patient_nbr ORDER BY age DESC) AS row_num
+	FROM silver_patient
+)
 SELECT patient_nbr, race, gender, age, weight
-FROM healthcare.silver_patient;
+FROM patient_ranking
+WHERE row_num = 1; # remove duplicate patient_nbr records
 
 # Insert data from silver_patient_encounter to patient_encounter  
 INSERT INTO patient_encounter(encounter_id,patient_nbr,admission_type_id,discharge_disposition_id,
